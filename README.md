@@ -1,6 +1,13 @@
-# AngularDynamicDirectives
+# Angular-dynamic-directives
+Simple example to demonstrate angular dynamic directives creation with factory design pattern in editable data-table
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.1.2.
+See it in action here https://www.upliftskills.us/tutorials/angular-dynamic-directives/index.html
+
+
+## Clone Repo
+    git clone https://github.com/smartrack/angular-dynamic-directives.git
+
+
 
 ## Development server
 

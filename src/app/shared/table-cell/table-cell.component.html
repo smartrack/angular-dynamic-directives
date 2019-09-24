@@ -1,0 +1,40 @@
+<ng-container [ngSwitch]="column?.type">
+    <ng-container *ngSwitchCase="'text'">
+        <ng-container *ngTemplateOutlet="toggleinput;context: contentRef"></ng-container>
+    </ng-container>
+    <ng-container *ngSwitchCase="'select'">
+        <ng-container *ngTemplateOutlet="dropdown;context: contentRef"></ng-container>
+    </ng-container>
+    <ng-container *ngSwitchDefault>
+        <ng-container *ngTemplateOutlet="default;context: contentRef"></ng-container>
+    </ng-container>
+</ng-container>
+
+<!-- Non editable field -->
+<ng-template #default let-value>
+    {{value}}
+</ng-template>
+
+<!-- Text input field -->
+<ng-template #toggleinput>
+    <div tabindex="0" class="editable" (click)="toggleInput()" [hidden]="inputVisiblity">
+        {{row[column.prop]}}
+        <i class="material-icons">
+            edit
+        </i>
+    </div>
+    <input autofocus #textboxRef (blur)="updateValue($event)" *ngIf="inputVisiblity" type="text" [value]="row[column?.prop]" />
+</ng-template>
+
+<!-- Select field -->
+<ng-template #dropdown let-options="options">
+    <div tabindex="0" class="editable" (click)="toggleInput()" [hidden]="inputVisiblity">
+        {{row[column.prop]}}
+        <i class="material-icons">
+            edit
+        </i>
+    </div>
+    <select [ngModel]="row[column.prop]" *ngIf="inputVisiblity" (change)="updateValue($event)">
+        <option *ngFor="let option of options" [value]="option.value">{{option.label}}</option>
+    </select>
+</ng-template>
